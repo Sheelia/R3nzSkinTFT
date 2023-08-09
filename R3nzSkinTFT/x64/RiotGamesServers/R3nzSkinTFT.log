@@ -1,0 +1,15 @@
+﻿  Config.cpp
+  GUI.cpp
+C:\Users\Emo\Desktop\R3nzSkinTFT-main\R3nzSkinTFT\GUI.cpp(54,7): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  Hooks.cpp
+C:\Users\Emo\Desktop\R3nzSkinTFT-main\R3nzSkinTFT\Hooks.cpp(272,74): warning C4244: 'argument': conversion from 'LONG_PTR' to 'LONG', possible loss of data
+  R3nzSkinTFT.cpp
+  AIBaseCommon.cpp
+  CharacterDataStack.cpp
+  SkinDatabase.cpp
+  Generating code
+  2 of 3442 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    27 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  R3nzSkinTFT.vcxproj -> C:\Users\Emo\Desktop\R3nzSkinTFT-main\x64\RiotGamesServers\R3nzSkinTFT.dll
