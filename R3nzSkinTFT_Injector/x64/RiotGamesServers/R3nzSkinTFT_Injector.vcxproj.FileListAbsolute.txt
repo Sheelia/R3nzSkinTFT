@@ -1,0 +1,3 @@
+C:\Users\Shelia\Desktop\R3nzSkinTFT-main\R3nzSkinTFT_Injector\x64\RiotGamesServers\R3nzSkinTFT_Injector.vcxproj.AssemblyReference.cache
+C:\Users\Shelia\Desktop\R3nzSkinTFT-main\R3nzSkinTFT_Injector\x64\RiotGamesServers\R3nzSkinInjector.R3nzUI.resources
+C:\Users\Shelia\Desktop\R3nzSkinTFT-main\R3nzSkinTFT_Injector\x64\RiotGamesServers\R3nzSkinTFT_Injector.vcxproj.GenerateResource.cache

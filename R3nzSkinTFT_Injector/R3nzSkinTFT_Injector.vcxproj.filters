@@ -18,7 +18,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="R3nzSkinTFT_Injector.rc">
+    <ResourceCompile Include="R3nzSkin_Injector.rc">
       <Filter>Resource</Filter>
     </ResourceCompile>
   </ItemGroup>
@@ -30,6 +30,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Injector.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lazy_importer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
