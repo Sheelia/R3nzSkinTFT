@@ -21,6 +21,12 @@ public:
 	// PetModelName, PetName(auto translate), PetSkinCount(auto update)
 	std::vector<PetsInfo> pets{
 		{
+			"petporofluft",
+			"Fluft of Poros",
+			std::make_pair(1, 1)
+
+		},
+		{
 			"petchibiirelia",
 			"Chibi Irelia",
 			std::make_pair(1, 2)
