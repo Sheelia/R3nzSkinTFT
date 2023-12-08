@@ -1,88 +1,387 @@
 #pragma once
 
-#include <Windows.h>
 #include <cstdint>
-#include <d3d9.h>
-#include <d3d11.h>
+#include <string>
+#include <vector>
+#include <variant>
+#include <utility>
 
-#include "Offsets.hpp"
-#include "SDK/AIBaseCommon.hpp"
-#include "SDK/GameClient.hpp"
-#include "SDK/Pad.hpp"
-
-class offset_signature {
+class SkinDatabase {
 public:
-	std::vector<std::string> pattern;
-	bool sub_base;
-	bool read;
-	bool relative;
-	std::int32_t additional;
-	std::uint64_t* offset;
-};
-
-class Memory {
-public:
-	void Search(bool gameClient = true);
-
-	std::uintptr_t moduleBase;
-	HWND riotWindow;
-	GameClient* client;
-	AIBaseCommon* localPlayer;
-	IDirect3DDevice9* d3dDevice;
-	IDXGISwapChain* swapChain;
-private:
-	void update(bool gameClient = true) noexcept;
-
-	std::uintptr_t materialRegistry;
-
-	std::vector<offset_signature> gameClientSig
-	{
-		{
-			{
-				{
-					"48 8B 05 ? ? ? ? 4C 8B FA 83 78 0C 02"
-				}, true, false, true, 0, &offsets::global::GameClient
-			}
-		}
+	class PetsInfo {
+	public:
+		const char* modelName;
+		const char* skinName{ "" };
+		std::variant<std::int32_t, std::pair<std::int32_t, std::int32_t>> skinIds{ 1 };
 	};
 
+	void update() noexcept;
+	std::int32_t getSkinsLenForModel(std::string model, const std::int32_t startIdx) const noexcept;
+ 	
+	// PetModelName, PetName(auto translate), PetSkinCount(auto update)
+	std::vector<PetsInfo> pets{
+		{ 
+			"PetChibiSett",
+			"Chibi Sett", 
+			std::make_pair(1, 2)
+			},
+		{ 
+			"PetChibiAkali", 
+			"Chibi Akali", 
+			std::make_pair(1, 2)
+		},
+		{
+			"PetPoroFluft",
+			"Fluft of Poros",
+			std::make_pair(1, 1)
 
-	std::vector<offset_signature> sigs
-	{
-		{
-			{
-				"48 8B 3D ? ? ? ? 48 3B CF"
-			}, true, false, true, 0, & offsets::global::LocalPlayer
 		},
 		{
-			{
-				"48 8B 0D ? ? ? ? FF 15 ? ? ? ? 48 8B 05 ? ? ? ?"
-			}, true, false, true, 0, &offsets::global::Riot__g_window
+			"petchibiirelia",
+			"Chibi Irelia",
+			std::make_pair(1, 2)
+
 		},
 		{
-			{
-				"48 8D 8B ? ? ? ? 48 89 44 24 ? C7 44 24"
-			}, false, true, false, 0, &offsets::AIBaseCommon::CharacterDataStack
+			"PetBigKnifeDog",
+			"Knife Hound",
+			std::make_pair(1, 18)
+
 		},
 		{
-			{
-				"48 8B 8F ? ? 00 00 45 33 C0 8B D3 48 8B 01 FF 90 ? ? 00 00"
-			}, false, true, false, 0, &offsets::MaterialRegistry::D3DDevice
+			"petsmolknifedog",
+			"Knife Pup",
+			std::make_pair(1, 18)
+
 		},
 		{
-			{
-				"48 8D BB ? ? ? ? C6 83 ? ? ? ? ? 0F 84"
-			}, false, true, false, 0, &offsets::MaterialRegistry::SwapChain
+			"PetAkaliDragon",
+			"Ossia",
+			std::make_pair(1, 21)
+
 		},
 		{
-			{
-				"E8 ? ? ? ? 8B 57 44"
-			}, true, false, false, 0, &offsets::functions::FnRiot__Renderer__MaterialRegistry__GetSingletonPtr
+			"PetAoShin",
+			"Ao Shin",
+			std::make_pair(1, 51)
 		},
 		{
-			{
-				"E8 ? ? ? ? 41 8B 97 ? ? ? ? 48 8B 0D ? ? ? ?"
-			}, true, false, false, 0, &offsets::functions::FnCharacterDataStack__Push
+			"PetBallDragon",
+			"Poggless",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetBaron",
+			"Baron",
+			std::make_pair(3, 3)
+			
+		},
+		{
+			"PetBellSwayer",
+			"Bell Swayer",
+			std::make_pair(1, 21)
+
+		},
+		{
+			"PetBuglet",
+			"Flutterbug",
+			std::make_pair(1, 22)
+		},
+		{
+			"PetBunny",
+			"Bun Bun",
+			std::make_pair(1, 33)
+		},
+		{
+			"PetChibiAatrox",
+			"Chibi Aatrox",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiAhri",
+			"Chibi Ahri",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiAnnie",
+			"Chibi Annie",
+			std::make_pair(1, 2)
+		},	
+		{
+			"PetChibiAshe",
+			"Chibi Ashe",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiEkko",
+			"Chibi Ekko",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiGwen",
+			"Chibi Gwen",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiJinx",
+			"Chibi Jinx",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiKaisa",
+			"Chibi Kai'Sa",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiLeeSin",
+			"Chibi Lee Sin",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiLux",
+			"Chibi Lux",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiMalphite",
+			"Chibi Malphite",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiTeemo",
+			"Chibi Teemo",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiVi",
+			"Chibi Vi",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiYasuo",
+			"Chibi Yasuo",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChibiZed",
+			"Chibi Zed",
+			std::make_pair(1, 2)
+		},
+		{
+			"PetChoncc",
+			"Choncc",
+			std::make_pair(1, 51)
+		},
+		{
+			"PetCreepyCat",
+			"Whisker",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetDowsie",
+			"Dowsie",
+			std::make_pair(1, 36)
+		},
+		{
+			"PetDsSquid",
+			"Squink",
+			std::make_pair(1, 54)
+		},
+		{
+			"PetDsSwordGuy",
+			"Abyssia",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetDsWhale",
+			"Starmaw",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetDuckBill",
+			"Duckbill",
+			std::make_pair(1, 39)
+		},
+		{
+			"PetElegantDragon",
+			"Prancie",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetFairy",
+			"Nixie",
+			std::make_pair(1, 23)
+		},
+		{
+			"PetFenroar",
+			"Fenroar",
+			std::make_pair(1, 33)
+		},
+		{
+			"PetGargoyle",
+			"Craggle",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetGemTiger",
+			"Protector",
+			std::make_pair(1, 23)
+		},
+		{
+			"PetGhosty",
+			"Hauntling",
+			std::make_pair(1, 36)
+		},
+		{
+			"PetGloop",
+			"Gloop",
+			std::make_pair(1, 42)
+		},
+		{
+			"PetGriffin",
+			"Silverwing",
+			std::make_pair(1, 37)
+		},
+		{
+			"PetGrumpyLion",
+			"Furyhorn",
+			std::make_pair(1, 48)
+		},
+		{
+			"PetHextechBirb",
+			"Tocker",
+			std::make_pair(1, 23)
+		},
+		{
+			"PetJawDragon",
+			"Burno",
+			std::make_pair(1, 33)
+		},
+		{
+			"PetKoala",
+			"Grizzle",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetMiner",
+			"Molediver",
+			std::make_pair(1, 30)
+		},
+		{
+			"PetMiniGolem",
+			"Runespirit",
+			std::make_pair(1, 22)
+		},
+		{
+			"PetNimbleFoot",
+			"Nimblefoot",
+			std::make_pair(1, 21)
+		},
+		{
+			"PetOwl",
+			"Noctero",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetPegasus",
+			"Lightcharger",
+			std::make_pair(1, 39)
+		},
+		{
+			"PetPenguKnight",
+			"Featherknight",
+			std::make_pair(1, 56)
+		},
+		{
+			"PetPixiMander",
+			"Piximander",
+			std::make_pair(1, 24)
+		},
+		{
+			"PetPoro",
+			"Poro",
+			std::make_pair(1, 6)
+		},
+		{
+			"PetPupDragon",
+			"Bungo",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetQiyanaDog",
+			"QiQi",
+			std::make_pair(1, 33)
+		},
+		{
+			"PetRazorBeak",
+			"Raptors",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetScuttleCrab",
+			"Scuttle",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetSennaBunny",
+			"Melisma",
+			std::make_pair(1, 39)
+		},
+		{
+			"PetSgCat",
+			"Dango",
+			std::make_pair(1, 48)
+		},
+		{
+			"PetSgPig",
+			"Fuwa",
+			std::make_pair(1, 31)
+		},
+		{
+			"PetSgShisa",
+			"Shisa",
+			std::make_pair(1, 42)
+		},
+		{
+			"PetShark",
+			"Shork",
+			std::make_pair(1, 18)
+		},
+		{
+			"PetSpiritFox",
+			"Hushtail",
+			std::make_pair(1, 45)
+		},
+		{
+			"PetTftAvatar",
+			"River Sprite",
+			std::make_pair(1, 35)
+		},
+		{
+			"PetTurtle",
+			"Paddlemar",
+			std::make_pair(1, 42)
+		},
+		{
+			"PetUmbra",
+			"Umbra",
+			std::make_pair(1, 42)
+		},
+		{
+			"PetVoidEye",
+			"Khat'Sai",
+			std::make_pair(1, 18)
+
+		},
+		{
+			"TFT_ElderDragon",
+			"Elder Dragon"
+
+		},
+		{
+			"TFT_RiftHerald",
+			"Rift Herald"
+
 		}
 	};
 };
